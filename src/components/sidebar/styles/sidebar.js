@@ -23,11 +23,6 @@ export const SidebarStyle = styled.section`
 
 `
 
-export const Title = styled.h2`
-  text-align: center;
-  padding: 10px;
-`
-
 export const Button = styled(LinkRouter)`
   display: inline-block;
   background-color: transparent;
@@ -35,11 +30,11 @@ export const Button = styled(LinkRouter)`
   outline: none;
   border: none;
   width: 100%;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.white};
   text-decoration: none;
   padding: 15px 0;
   &:hover{
-    background-color: ${props => props.theme.primary};
-    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.mustard};
+    color: ${props => props.theme.primary};
   }
 `
