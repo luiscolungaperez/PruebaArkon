@@ -4,7 +4,6 @@ import { Layout } from '../containers/Layout'
 import { Dashboard } from '../containers/dashboard'
 import { ListTasks } from '../containers/list'
 
-
 export const App = () => {
   return(
     <BrowserRouter>

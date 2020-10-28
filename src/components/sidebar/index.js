@@ -1,15 +1,22 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { SidebarStyle, Button } from './styles/sidebar'
+import { SidebarStyle, Button, ButtonActive } from './styles/sidebar'
 import { theme } from '../../variables'
 
-export const Sidebar = () => {
+export const Sidebar = ({ location }) => {
   return (
     <ThemeProvider theme={theme} >
       <SidebarStyle>
-        {/* <Title>Dashboard</Title> */}
-        <Button to='/'>Dashboard</Button>
-        <Button to='/list'>Lista de tareas</Button>
+        {
+          location === '/' 
+            ?  <ButtonActive to='/'>Dashboard</ButtonActive> 
+            : <Button to='/'>Dashboard</Button>
+        }
+        {
+          location === '/list' 
+            ? <ButtonActive to='/list'>Lista de tareas</ButtonActive>
+            : <Button to='/list'>Lista de tareas</Button>
+        }
       </SidebarStyle>
     </ThemeProvider>
   )

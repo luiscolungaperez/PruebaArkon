@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <ThemeProvider theme={theme}>
       <HeaderStyles>
-        <Title>Funcionalidades</Title>
+        <Title>Arkon</Title>
         <Button>
           <FaBars />
         </Button>

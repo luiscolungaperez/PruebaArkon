@@ -7,20 +7,12 @@ export const SidebarStyle = styled.section`
   height: calc(100vh - 70px);
   width: 200px;
   background-color: ${props => props.theme.secondary};
-  // Extra small devices (portrait phones, less than 576px)
   @media (max-width: 575.98px) {
     display: none;
   }
-
-  // Small devices (landscape phones, less than 768px)
   @media (max-width: 767.98px) {
     display: none;
   }
-
-  @media (max-width: 991.98px) {  }
-
-  @media (max-width: 1199.98px) {  }
-
 `
 
 export const Button = styled(LinkRouter)`
@@ -33,8 +25,29 @@ export const Button = styled(LinkRouter)`
   color: ${props => props.theme.white};
   text-decoration: none;
   padding: 15px 0;
-  &:hover{
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  &:hover, &:focus{
+    text-decoration: none;
     background-color: ${props => props.theme.mustard};
     color: ${props => props.theme.primary};
+    transition: 0.3s ease-in-out;
+  }
+`
+
+export const ButtonActive = styled(LinkRouter)`
+  display: inline-block;
+  text-align: center;
+  outline: none;
+  border: none;
+  width: 100%;
+  background-color: ${props => props.theme.mustard};
+  color: ${props => props.theme.primary};
+  text-decoration: none;
+  padding: 15px 0;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  &:hover, &:focus{
+    text-decoration: none;
   }
 `
