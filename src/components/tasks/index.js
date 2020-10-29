@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import Paper from '@material-ui/core/Paper'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useEffect } from 'react'
+import { TableBody, TableCell, Table, TableHead, TablePagination, TableRow } from '@material-ui/core'
+import { PaperMaterial, TableContainerMaterial, RowsContent, TableRowMaterial } from './styles/tasks'
 import { ViewDetails } from '../viewDetails'
 import { useModal } from '../../hooks/useModal'
 import { usePages } from '../../hooks/usePages'
@@ -16,17 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchTasks } from '../../redux'
 import { columns } from './columns'
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-});
-
 export const Tasks = () => {
-  const classes = useStyles()
   const dispatch = useDispatch()
   const data = useSelector((state) => state.tasks)
   const [open, handleOpen, handleClose] = useModal()
@@ -39,8 +22,8 @@ export const Tasks = () => {
 
   return(
     <div style={{ height: 400, width: '100%' }}>
-      <Paper className={classes.root}>
-        <TableContainer className={classes.container}>
+      <PaperMaterial>
+        <TableContainerMaterial>
           <Table stickyHeader aria-label='sticky table'>
             <TableHead>
               <TableRow>
@@ -57,24 +40,34 @@ export const Tasks = () => {
             </TableHead>
             <TableBody>
               {
-                items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(item => (
-                  <TableRow hover role='checkbox' tabIndex={-1} key={item.id} onClick={() => handleClickRow(item.id)}>
-                    {
-                      columns.map(column => {
-                        const value = item[column.id]
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number' ? column.format(value) : value}
-                          </TableCell>
-                        )
-                      })
-                    }
-                  </TableRow>
-                ))
+                items.length === 0
+                  ? (
+                      <TableRowMaterial >
+                        <TableCell>
+                          <RowsContent>No hay filas</RowsContent>
+                        </TableCell>
+                      </TableRowMaterial >
+                    )
+                  : (
+                      items.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(item => (
+                        <TableRowMaterial hover role='checkbox' tabIndex={-1} key={item.id} onClick={() => handleClickRow(item.id)}>
+                          {
+                            columns.map(column => {
+                              const value = item[column.id]
+                              return (
+                                <TableCell key={column.id} align={column.align}>
+                                  {column.format && typeof value === 'number' ? column.format(value) : value}
+                                </TableCell>
+                              )
+                            })
+                          }
+                        </TableRowMaterial>
+                      ))
+                    )
               }
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainerMaterial>
         <TablePagination
           rowsPerPageOptions={[5]}
           component='div'
@@ -84,7 +77,7 @@ export const Tasks = () => {
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
-      </Paper>
+      </PaperMaterial>
       {
         open.open && 
           <ViewDetails onClose={handleClose} id={id} />

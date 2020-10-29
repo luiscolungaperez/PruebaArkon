@@ -10,7 +10,7 @@ export const Layout = ({ children }) => {
     <>
       <Header />
       <Sidebar location={location} />
-      <Content>
+      <Content style={{margin: 'auto'}}>
         { children }
       </Content>
     </>

@@ -29,3 +29,17 @@ export const fetchTasks = () => {
       .catch(error => dispatch(fetchFailure(error.message)))
   }
 }
+
+export const addTasks = (data) => {
+  return (dispatch) => {
+    axios.post(
+      'https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks',
+      data
+    )
+      .then(({ data }) => dispatch(fetchSuccess(data)))
+      .then(() => {
+        location.reload()
+      })
+      .catch(({ message }) => dispatch(fetchFailure(message)))
+  }
+}

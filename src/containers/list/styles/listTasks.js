@@ -1,11 +1,31 @@
 import styled from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+
+export const Theme = styled(ThemeProvider)`
+  margin: 0 auto;
+`
+
+export const Content = styled.section`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  @media (max-width: 575.98px) {
+    justify-content: space-evenly;
+  }
+`
 
 export const Title = styled.h2`
   padding: 10px 0;
   text-transform: uppercase;
+  @media (max-width: 575.98px) {
+    text-align: center;
+  }
 `
 
 export const AddButton = styled.button`
+  align-self: flex-end;
   padding: 5px 20px;
   margin: 10px 10px 10px 0;
   background-color: ${props => props.theme.primary};

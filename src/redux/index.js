@@ -1,1 +1,1 @@
-export { fetchTasks } from './tasks/actions'
+export * from './tasks/actions'
