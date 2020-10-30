@@ -28,3 +28,7 @@ Para accesar a los detalles de la tarea, es necesario hacer click en la tarea es
 
 <img src="./images/update.PNG">
 
+### Link de acceso
+    Despliegue en vercel con integracion continua
+    
+    https://arkon-prueba-beza4vkxm.vercel.app/
