@@ -1,6 +1,14 @@
 import styled from 'styled-components'
 import { Paper, TableContainer, TableRow } from '@material-ui/core'
 
+export const Content = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; 
+  width: 100%; 
+`
+
 export const PaperMaterial = styled(Paper)`
   width: 100%;
 `

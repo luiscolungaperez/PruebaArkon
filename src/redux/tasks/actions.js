@@ -37,9 +37,18 @@ export const addTasks = (data) => {
       data
     )
       .then(({ data }) => dispatch(fetchSuccess(data)))
-      .then(() => {
-        location.reload()
-      })
+      .then(() => location.reload())
+      .catch(({ message }) => dispatch(fetchFailure(message)))
+  }
+}
+
+export const putTask = (data) => {
+  return (dispatch) => {
+    axios.put(
+      'https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks',
+      data
+    )
+      .then(({ data }) => dispatch(fetchSuccess(data)))
       .catch(({ message }) => dispatch(fetchFailure(message)))
   }
 }

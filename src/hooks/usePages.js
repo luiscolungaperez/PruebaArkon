@@ -1,10 +1,15 @@
 import { useState } from 'react'
 
-export const usePages = (handleOpen) => {
-  
-  const [id, setId] = useState('')
+export const usePages = (handleOpen) => {  
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [task, setTask] = useState({
+    id: '',
+    name: '',
+    description: '',
+    duration: '',
+    status: ''
+  })
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -16,9 +21,9 @@ export const usePages = (handleOpen) => {
   }
 
   const handleClickRow = (item) => {
-    setId(item)
+    setTask(item)
     handleOpen()
   }
 
-  return [page, rowsPerPage, id, handleChangePage, handleChangeRowsPerPage, handleClickRow]
+  return [page, rowsPerPage, task, handleChangePage, handleChangeRowsPerPage, handleClickRow]
 }
