@@ -8,10 +8,17 @@ export const SidebarStyle = styled.section`
   width: 200px;
   background-color: ${props => props.theme.secondary};
   @media (max-width: 575.98px) {
-    display: none;
+
+    display: ${props => props.open ? 'block': 'none'};
+    z-index: ${props => props.open ? '1000': 0};
+    width: ${props => props.open ? '100vw': 0};
+    height: ${props => props.open ? '100vh': 0};
   }
   @media (max-width: 767.98px) {
-    display: none;
+    display: ${props => props.open ? 'block': 'none'};
+    z-index: ${props => props.open ? '1000': 0};
+    width: ${props => props.open ? '100vw': 0};
+    height: ${props => props.open ? '100vh': 0};
   }
 `
 

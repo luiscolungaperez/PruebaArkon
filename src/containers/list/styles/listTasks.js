@@ -16,6 +16,15 @@ export const Content = styled.section`
   }
 `
 
+export const Actions = styled.section`
+  display: flex;
+  justify-content: space-between;
+`
+
+export const SelectContent = styled.div`
+
+`
+
 export const Title = styled.h2`
   padding: 10px 0;
   text-transform: uppercase;

@@ -9,18 +9,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchTasks } from '../../redux'
 import { columns } from './columns'
 
-export const Tasks = () => {
+export const Tasks = ({ filter }) => {
   const dispatch = useDispatch()
   const data = useSelector((state) => state)
   const [open, handleOpen, handleClose] = useModal()
   const [page, rowsPerPage, task, handleChangePage, handleChangeRowsPerPage, handleClickRow] = usePages(handleOpen)
-  const items = useResortData(data.tasks)
+  const items = useResortData(data.tasks, filter)
 
   
   useEffect(() => {
     dispatch(fetchTasks())
   }, [])
-
+  
   return(
     <Content>
       {

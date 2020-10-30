@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react'
 
-export const useResortData = (data) => {
+export const useResortData = (data, filter) => {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    setItems(data.sort((a, b) => b - a).reverse())
-  }, [data])
+    if(!filter){
+     setItems(data.reverse())
+    }
+    else if(filter === 30){
+      setItems(data.filter(item => item.duration > 0 && item.duration < 31))
+    }else if(filter === 60){
+      setItems(data.filter(item => item.duration > 30 && item.duration < 61))
+    }else if(filter === 90){
+      setItems(data.filter(item => item.duration > 60 && item.duration < 91))
+    }
+  }, [data, filter])
 
   return items
 }

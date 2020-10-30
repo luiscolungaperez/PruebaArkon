@@ -3,19 +3,24 @@ import { ThemeProvider } from 'styled-components'
 import { SidebarStyle, Button, ButtonActive } from './styles/sidebar'
 import { theme } from '../../variables'
 
-export const Sidebar = ({ location }) => {
+export const Sidebar = ({ location, open, action }) => {
+
+  const handleClose = () => {
+    action(false)
+  }
+
   return (
     <ThemeProvider theme={theme} >
-      <SidebarStyle>
+      <SidebarStyle open={open}>
         {
           location === '/' 
-            ?  <ButtonActive to='/'>Dashboard</ButtonActive> 
-            : <Button to='/'>Dashboard</Button>
+            ?  <ButtonActive to='/' onClick={handleClose}>Dashboard</ButtonActive> 
+            : <Button to='/' onClick={handleClose}>Dashboard</Button>
         }
         {
           location === '/list' 
-            ? <ButtonActive to='/list'>Lista de tareas</ButtonActive>
-            : <Button to='/list'>Lista de tareas</Button>
+            ? <ButtonActive to='/list' onClick={handleClose}>Lista de tareas</ButtonActive>
+            : <Button to='/list' onClick={handleClose}>Lista de tareas</Button>
         }
       </SidebarStyle>
     </ThemeProvider>
