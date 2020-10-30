@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 export const useGetItem = (item) => {
   const [form, setForm] = useState({
+    id: item.id,
     name: item.name,
     description: item.description,
     duration: item.duration,

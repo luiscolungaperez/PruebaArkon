@@ -4,8 +4,9 @@ import { VictoryPie } from 'victory'
 export const Title = styled.h2`
   text-align: center;
   text-transform: uppercase;
+  margin-top: 35px;
 `
 
 export const Graphic = styled(VictoryPie)`
-  height: 200px;
+  /* max-height: 150px; */
 `

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTasks } from '../redux'
 
-export const useAddTask = () => {
+export const useAddTask = (onClose) => {
   const dispatch = useDispatch()
   const data = useSelector(state => state.tasks)
 
@@ -24,7 +24,7 @@ export const useAddTask = () => {
   }
 
   useEffect(() => {
-    if (data.tasks.length === 0) {
+    if (data.length === 0) {
       setForm({
         ...form,
         id: 1
@@ -32,7 +32,7 @@ export const useAddTask = () => {
     } else {
       setForm({
         ...form,
-        id: parseInt(data.tasks[0].id) + 1
+        id: parseInt(data[0].id) + 1
       })
     }
   }, [])
@@ -40,6 +40,7 @@ export const useAddTask = () => {
 
   const handleSave = () => {
     dispatch(addTasks(form))
+    onClose()
   }
 
   return [handleChange, handleSave]

@@ -3,21 +3,22 @@ import { ThemeProvider } from 'styled-components'
 import { theme } from '../../variables'
 import { Title, Graphic } from './styles/chart'
 
-export const Chart = () => {
+export const Chart = ({ data }) => {
   return (
     <ThemeProvider theme={theme}>
-      <Title>Tareas</Title>
+      <Title>Tareas Activas</Title>
       <Graphic
+        origin={{ y: 180 }}
         innerRadius={100}
         data={
           [
-            { x: 'Completadas', y: 33 },
-            { x: 'Eliminadas', y: 34 },
-            { x: 'En Progreso', y: 33 }
+            { x: `Activo ${(data.act * 100 / (data.act + data.des))}%`, y: (data.act * 100 / (data.act + data.des)) },
+            { x: `Desactivado ${(data.des * 100 / (data.act + data.des))}%`, y: (data.des * 100 / (data.act + data.des)) },
           ]
         }
         colorScale={[theme.primary, theme.yellow, theme.secondary, theme.mustard]}
-        padding={{ top: 20, bottom: 60 }}
+        // height={250}
+        // padding={{ top: 60, bottom: 60 }}
         // animate={{duration: 5000}}
       />
     </ThemeProvider>

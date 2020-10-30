@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 export const AddTasks = ({ onClose }) => {
   const data = useSelector(state => state.tasks)
-  const [handleChange, handleSave] = useAddTask(data.tasks)
+  const [handleChange, handleSave] = useAddTask(onClose)
   
   return ReactDOM.createPortal(
     <Modal>

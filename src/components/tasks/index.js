@@ -11,11 +11,12 @@ import { columns } from './columns'
 
 export const Tasks = () => {
   const dispatch = useDispatch()
-  const data = useSelector((state) => state.tasks)
+  const data = useSelector((state) => state)
   const [open, handleOpen, handleClose] = useModal()
   const [page, rowsPerPage, task, handleChangePage, handleChangeRowsPerPage, handleClickRow] = usePages(handleOpen)
   const items = useResortData(data.tasks)
 
+  
   useEffect(() => {
     dispatch(fetchTasks())
   }, [])

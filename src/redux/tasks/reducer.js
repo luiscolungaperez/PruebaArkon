@@ -1,12 +1,6 @@
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE } from './types'
+import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE } from './types'
 
-const initialState = {
-  loading: false,
-  tasks: [],
-  error: ''
-}
-
-export const TasksReducer = (state = initialState, action) => {
+export const TasksReducer = (state, action) => {
   switch(action.type){
     case FETCH_REQUEST: 
       return {
@@ -25,6 +19,18 @@ export const TasksReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         tasks: [],
+        error: action.payload
+      }
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        tasks: [...state.tasks.sort((a, b) => b - a).reverse(), action.payload],
+        error: ''
+      }
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        tasks: [...state.tasks],
         error: action.payload
       }
     default: 

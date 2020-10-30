@@ -16,14 +16,14 @@ export const Modal = styled.section`
 `
 
 export const Content = styled.section`
-  width: 450px;
-  height: 400px;
+  width: 300px;
+  height: 450px;
   background-color: white;
   border-radius: 10px;
   transition: 1s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `
 
 export const CloseButton = styled.button`
@@ -58,12 +58,20 @@ export const Title = styled.h2`
 
 export const Input = styled(TextField)`
   width: 100%;
+  margin: 10px 0;
 `
 export const GridMaterial = styled(Grid)`
   padding: 15px;
 `
+export const Form = styled(Grid)`
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly
+`
 
 export const EditButton = styled.button`
+  margin: 10px auto;
   padding: 5px;
   border: none;
   background-color: ${props => props.theme.primary};

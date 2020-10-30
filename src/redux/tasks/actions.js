@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE } from './types'
+import { FETCH_REQUEST, FETCH_SUCCESS, FETCH_FAILURE, REGISTER_SUCCESS, REGISTER_FAILURE } from './types'
 
 const fetchRequest = () => {
   return {
@@ -21,12 +21,26 @@ const fetchFailure = (payload) => {
   }
 }
 
+const registerSuccess = (payload) =>{
+  return {
+    type: REGISTER_SUCCESS,
+    payload
+  }
+}
+
+const registerFailure = (payload) =>{
+  return {
+    type: REGISTER_FAILURE,
+    payload
+  }
+}
+
 export const fetchTasks = () => {
   return (dispatch) => {
     dispatch(fetchRequest())
     axios.get('https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks')
-      .then(response => dispatch(fetchSuccess(response.data)))
-      .catch(error => dispatch(fetchFailure(error.message)))
+      .then(({ data }) => dispatch(fetchSuccess(data)))
+      .catch(({ message }) => dispatch(fetchFailure(message)))
   }
 }
 
@@ -36,19 +50,20 @@ export const addTasks = (data) => {
       'https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks',
       data
     )
-      .then(({ data }) => dispatch(fetchSuccess(data)))
-      .then(() => location.reload())
-      .catch(({ message }) => dispatch(fetchFailure(message)))
+      .then(({ data }) => dispatch(registerSuccess(data)))
+      .catch(({ message }) => dispatch(registerFailure(message)))
   }
 }
 
 export const putTask = (data) => {
   return (dispatch) => {
+    console.log(data)
     axios.put(
-      'https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks',
+      `https://5f9849be42706e00169583b4.mockapi.io/api/v1/tasks/${data.id}`,
       data
     )
       .then(({ data }) => dispatch(fetchSuccess(data)))
+      .then(() => location.reload())
       .catch(({ message }) => dispatch(fetchFailure(message)))
   }
 }
